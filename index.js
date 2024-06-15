@@ -6,13 +6,15 @@ function calculateLinesOfCode(request, json) {
 
     if (json?.Error) return { schemaVersion: 1, label: "lines", message: json?.Error } 
     const whitelistedFiles = request?.query?.languages?.split(",");
+    const targetStatistic = request?.query?.stat ?? "linesOfCode"
 
     return { schemaVersion: 1, label: "lines", message: String(
         json.reduce((acc, file) => {
+            if (file.language == "Total") return acc
             if (whitelistedFiles) {        
-                return whitelistedFiles.includes(file.language) ? acc + file.linesOfCode : acc;
+                return whitelistedFiles.includes(file.language) ? acc + (file?.[targetStatistic] ?? 0) : acc;
             }
-            return acc + file.linesOfCode;
+            return acc + (file?.[targetStatistic] ?? 0);
         }, 0)
     ) }
 }
@@ -35,6 +37,8 @@ function constructMessageURI(request) {
 
 Router.get('/', (request, response) => {
     try {
+        console.log(constructMessageURI(request))
+
         fetch(constructMessageURI(request)).then(text => text.json()).then(json => {
             response.json(calculateLinesOfCode(request, json))
         })

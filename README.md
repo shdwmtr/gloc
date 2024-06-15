@@ -22,12 +22,13 @@ the live build is at https://loc-counter.onrender.com/
 | `ignored`       | relative path or file to exclude from count. comma seperated           | ✅       | -             |
 | `branch`       | target branch          | ✅      | `master`    |
 | `languages`       | whitelisted languages to count. to find langauge strings, go to [count loc](https://codetabs.com/count-loc/count-loc-online.html), put in your repo details, go to network tab in inspector, find the api request and open it in a new tab. you'll see all the available languages in your repo.           | ✅       | -             |
+| `stat`       | specificy what to count. input types are `linesOfCode`, `comments`, `blanks`, `lines`, `files`           | ✅       | linesOfCode             |
 
 > [!IMPORTANT]  
 > Remember to properly url encode your request otherwise special characters wont work.
 
 #### Example 
-https://loc-counter.onrender.com?repo=SteamClientHomebrew/Millennium&languages=C%2B%2B,C%20Header&branch=main&ignored=vendor
+https://loc-counter.onrender.com?repo=ShadowMonster99/LOC-Counter&branch=master&ignored=pnpm-lock.yaml,README.md,package.json,.gitignore&stat=lines
 
 
 ### Using in Markdown

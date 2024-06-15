@@ -1,7 +1,6 @@
 const express = require('express')
 const Router = express()
-const PORT = 3000
-const serverless = require("serverless-http");
+const PORT = process.env.PORT || 3000
 
 const CalculateLinesOfCode = (json) => {
   let lines = 0
@@ -29,5 +28,3 @@ Router.get('/', (request, response) =>
 })
 
 Router.listen(PORT, () => console.log(`listening on ${PORT}`))
-
-export const handler = serverless(api);

@@ -37,8 +37,6 @@ function constructMessageURI(request) {
 
 Router.get('/', (request, response) => {
     try {
-        console.log(constructMessageURI(request))
-
         fetch(constructMessageURI(request)).then(text => text.json()).then(json => {
             response.json(calculateLinesOfCode(request, json))
         })

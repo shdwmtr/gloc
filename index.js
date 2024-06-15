@@ -4,16 +4,28 @@ const PORT = process.env.PORT || 3000
 
 function CalculateLinesOfCode(request, json)
 {
+    if (json?.Error)
+    {
+        return {
+            schemaVersion: 1, label: "lines", message: json?.Error
+        }
+    }
+
     const whitelistedFiles = request?.query?.languages?.split(",");
 
     const totalLines = json.reduce((acc, file) => {
-        return whitelistedFiles.includes(file.language) ? acc + file.linesOfCode : acc;
+
+        if (whitelistedFiles)
+        {        
+            return whitelistedFiles.includes(file.language) ? acc + file.linesOfCode : acc;
+        }
+
+        return acc + file.linesOfCode;
+
     }, 0);
 
     return {
-        schemaVersion: 1,
-        label: "lines",
-        message: String(totalLines)
+        schemaVersion: 1, label: "lines", message: String(totalLines)
     }
 }
 

@@ -1,7 +1,6 @@
-# LOC Counter
-A simplistic web wrapper for [codetabs loc](https://github.com/jolav/codetabs/tree/master/loc).
+<h1>LOC Badge &nbsp;<img align="center" height="20" src="https://img.shields.io/endpoint?url=https%3A%2F%2Floc-counter.onrender.com%3Frepo%3DShadowMonster99%2FLOC-Counter%26branch%3Dmaster%26ignored%3Dpnpm-lock.yaml%2CREADME.md%2Cpackage.json%2C.gitignore%26stat%3Dlines"></h1>
 
-![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Floc-counter.onrender.com%3Frepo%3DShadowMonster99%2FLOC-Counter%26branch%3Dmaster%26ignored%3Dpnpm-lock.yaml%2CREADME.md%2Cpackage.json%2C.gitignore%26stat%3Dlines)
+A simplistic web wrapper for [codetabs loc](https://github.com/jolav/codetabs/tree/master/loc) to create custom badges for project readme's.
 
 
 ## Setup

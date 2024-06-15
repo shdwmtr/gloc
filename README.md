@@ -24,7 +24,14 @@ the live build is at https://loc-counter.onrender.com/
 > Remember to properly url encode your request otherwise special characters wont work.
 
 #### Example 
-`https://loc-counter.onrender.com?repo=SteamClientHomebrew/Millennium&languages=C%2B%2B,C%20Header&branch=main&ignored=vendor`
+https://loc-counter.onrender.com?repo=SteamClientHomebrew/Millennium&languages=C%2B%2B,C%20Header&branch=main&ignored=vendor
 
 
-### Using
+### Using in Markdown
+
+head over to https://shields.io/badges/endpoint-badge and put your LOC counter url as the query url.
+
+You can then use the generated badge in markdown!
+
+> [!NOTE]  
+> You can also override any of the properties in the schema by adding them as an extra query param in the result url

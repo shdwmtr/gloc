@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3000
 
 function CalculateLinesOfCode(request, json)
 {
-    const whitelistedFiles = request?.query?.languages.split(",");
+    const whitelistedFiles = request?.query?.languages?.split(",");
 
     const totalLines = json.reduce((acc, file) => {
         return whitelistedFiles.includes(file.language) ? acc + file.linesOfCode : acc;

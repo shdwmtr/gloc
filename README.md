@@ -1,6 +1,9 @@
 ## LOC Counter
 A simplistic web wrapper for [codetabs loc](https://github.com/jolav/codetabs/tree/master/loc).
 
+![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Floc-counter.onrender.com%2F%3Frepo%3DShadowMonster99%2Floc-badge%26branch%3Dmaster%26ignored%3Dpnpm-lock.yaml%2CREADME.md%2Cpackage.json%2C.gitignore)
+
+
 ### Setup
 the live build is at https://loc-counter.onrender.com/
 

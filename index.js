@@ -2,72 +2,44 @@ const express = require('express')
 const Router = express()
 const PORT = process.env.PORT || 3000
 
-function CalculateLinesOfCode(request, json)
-{
-    if (json?.Error)
-    {
-        return {
-            schemaVersion: 1, label: "lines", message: json?.Error
-        }
-    }
+function calculateLinesOfCode(request, json) {
 
+    if (json?.Error) return { schemaVersion: 1, label: "lines", message: json?.Error } 
     const whitelistedFiles = request?.query?.languages?.split(",");
 
-    const totalLines = json.reduce((acc, file) => {
-
-        if (whitelistedFiles)
-        {        
-            return whitelistedFiles.includes(file.language) ? acc + file.linesOfCode : acc;
-        }
-
-        return acc + file.linesOfCode;
-
-    }, 0);
-
-    return {
-        schemaVersion: 1, label: "lines", message: String(totalLines)
-    }
+    return { schemaVersion: 1, label: "lines", message: String(
+        json.reduce((acc, file) => {
+            if (whitelistedFiles) {        
+                return whitelistedFiles.includes(file.language) ? acc + file.linesOfCode : acc;
+            }
+            return acc + file.linesOfCode;
+        }, 0)
+    ) }
 }
 
-function ConstructMessageURI(request) 
-{
+function constructMessageURI(request) {
+
     const params = request.query
     const repository = params?.repo
 
-    if (!repository) 
-    {
+    if (!repository) {
         throw Error("missing query paramter 'repo'")
     }
 
-    const vendor = params?.vendor ?? "github"
-    const branch = params?.branch ?? "master"
-    const ignoredItems = params?.ignored ?? String()
+    const vendor = params?.vendor ?? "github", branch = params?.branch ?? "master", ignoredItems = params?.ignored ?? String()
 
-    const baseUrl = new URL('https://api.codetabs.com/v1/loc/');
-
-    const searchParams = new URLSearchParams({
-        [vendor]: repository,
-        ignored: ignoredItems,
-        branch: branch
-    });
-
-    baseUrl.search = searchParams
+    const baseUrl  = new URL('https://api.codetabs.com/v1/loc/');
+    baseUrl.search = new URLSearchParams({ [vendor]: repository, ignored: ignoredItems, branch: branch });
     return baseUrl.toString()
 }
 
-Router.get('/', (request, response) => 
-{
-    try
-    {
-        const requestUrl = ConstructMessageURI(request)
-
-        fetch(requestUrl).then(text => text.json()).then(json => 
-        {
-            response.json(CalculateLinesOfCode(request, json))
+Router.get('/', (request, response) => {
+    try {
+        fetch(constructMessageURI(request)).then(text => text.json()).then(json => {
+            response.json(calculateLinesOfCode(request, json))
         })
     }
-    catch (exception)
-    {
+    catch (exception) {
         response.json({exception: exception.toString()})
     }
 })

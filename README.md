@@ -1,18 +1,12 @@
-## LOC Counter
+# LOC Counter
 A simplistic web wrapper for [codetabs loc](https://github.com/jolav/codetabs/tree/master/loc).
 
 ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Floc-counter.onrender.com%3Frepo%3DShadowMonster99%2FLOC-Counter%26branch%3Dmaster%26ignored%3Dpnpm-lock.yaml%2CREADME.md%2Cpackage.json%2C.gitignore%26stat%3Dlines)
 
 
-### Setup
+## Setup
 the live build is at https://loc-counter.onrender.com/
 
-#### Query Options
-- `repo` repository in `owner/repo` format
-- `vendor` github or gitlab
-- `ignored` relative path or file to exclude from count. comma seperated
-- `branch` target branch. defaults to `master`
-- `languages` 
 
 
 | Parameter Name | Description                     | Optional | Default Value |
@@ -27,11 +21,11 @@ the live build is at https://loc-counter.onrender.com/
 > [!IMPORTANT]  
 > Remember to properly url encode your request otherwise special characters wont work.
 
-#### Example 
+## Example 
 https://loc-counter.onrender.com?repo=ShadowMonster99/LOC-Counter&branch=master&ignored=pnpm-lock.yaml,README.md,package.json,.gitignore&stat=lines
 
 
-### Using in Markdown
+# Using in Markdown
 
 head over to https://shields.io/badges/endpoint-badge and put your LOC counter url as the query url.
 
